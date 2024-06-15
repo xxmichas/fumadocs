@@ -1,5 +1,12 @@
 # next-docs-ui
 
+## 12.0.8
+
+### Patch Changes
+
+- 5f86faa: Improve multi-line code blocks
+  - fumadocs-core@12.0.8
+
 ## 12.0.7
 
 ### Patch Changes

@@ -157,8 +157,29 @@ function generateBody(
   method: string,
   schema: NoReference<ParsedSchema>,
 ): unknown {
-  return sample(schema as object, {
+  const value = sample(schema as object, {
     skipReadOnly: method !== 'GET',
     skipWriteOnly: method === 'GET',
-  });
+  }) as Record<string, unknown>;
+
+  fixGeneratedInput(value);
+
+  return value;
+}
+
+// TODO: Check schema to confirm an empty object was generated from oneOf that included null
+// Replaces generated empty objects {} with of nulls
+function fixGeneratedInput(obj: Record<string, unknown>): void {
+  for (const key in obj) {
+    const value = obj[key];
+
+    if (typeof value === 'object' && value !== null) {
+      if (Object.keys(value).length === 0) {
+        // Empty object
+        obj[key] = null;
+      } else {
+        fixGeneratedInput(value as Record<string, unknown>);
+      }
+    }
+  }
 }

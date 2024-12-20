@@ -22,6 +22,7 @@ export async function getTypescriptSchema(
         additionalProperties: false,
         format: true,
         enableConstEnums: false,
+        maxItems: -1,
       },
     );
   }

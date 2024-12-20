@@ -189,6 +189,9 @@ export function Operation({
       route={path}
       baseUrls={type === 'operation' ? baseUrls : []}
     >
+      {method.description ? (
+        <Markdown key="description" text={method.description} />
+      ) : null}
       {type === 'operation' ? (
         <Playground path={path} method={method} ctx={ctx} />
       ) : null}

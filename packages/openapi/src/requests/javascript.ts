@@ -7,6 +7,12 @@ export function getSampleRequest(endpoint: EndpointSample): string {
   const headers = new Map<string, unknown>();
   const cookies = new Map<string, unknown>();
 
+  options.set('method', JSON.stringify(endpoint.method));
+
+  if (endpoint.body !== undefined) {
+    headers.set('Content-Type', 'application/json');
+  }
+
   for (const param of endpoint.parameters) {
     if (param.in === 'header') {
       headers.set(param.name, param.sample);

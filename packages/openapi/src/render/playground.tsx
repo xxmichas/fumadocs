@@ -121,6 +121,8 @@ export function Playground({
       ? toSchema(bodyContent[mediaType].schema, true, context)
       : undefined;
 
+  const authHeaders = getAuthHeaders(method, ctx);
+
   const props: APIPlaygroundProps = {
     authorization: getAuthorizationField(method, ctx),
     method: method.method,
@@ -132,7 +134,7 @@ export function Playground({
     query: method.parameters
       ?.filter((v) => v.in === 'query')
       .map((v) => parameterToField(v, context)),
-    header: method.parameters
+    header: [...authHeaders, ...(method.parameters ?? [])]
       ?.filter((v) => v.in === 'header')
       .map((v) => parameterToField(v, context)),
     body: bodySchema,
@@ -141,6 +143,39 @@ export function Playground({
   };
 
   return <ctx.renderer.APIPlayground {...props} />;
+}
+
+function getAuthHeaders(
+  method: MethodInformation,
+  ctx: RenderContext,
+): NonNullable<MethodInformation['parameters']> {
+  const security = method.security?.[0];
+  if (security === undefined) {
+    return [];
+  }
+
+  const securitySchemes = ctx.document.components?.securitySchemes;
+  if (securitySchemes === undefined) {
+    return [];
+  }
+
+  const securitySchemeNames = Object.keys(security);
+  const authHeaders: MethodInformation['parameters'] = [];
+
+  for (let i = 0; i < securitySchemeNames.length; i++) {
+    const scheme = securitySchemes[securitySchemeNames[i]];
+    if (scheme.type !== 'apiKey' || scheme.in !== 'header') {
+      return [];
+    }
+
+    authHeaders.push({
+      in: 'header',
+      name: scheme.name,
+      required: true,
+    });
+  }
+
+  return authHeaders;
 }
 
 function getAuthorizationField(

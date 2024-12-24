@@ -1,5 +1,21 @@
 # next-docs-ui
 
+## 14.6.4
+
+### Patch Changes
+
+- 67124b1: Improve theme toggle on Notebook layout
+- 1810868: Enable `content-visibility` CSS features
+- Updated dependencies [b71064a]
+  - fumadocs-core@14.6.4
+
+## 14.6.3
+
+### Patch Changes
+
+- abc3677: Allow `className` to be used with `SidebarItem`
+  - fumadocs-core@14.6.3
+
 ## 14.6.2
 
 ### Patch Changes

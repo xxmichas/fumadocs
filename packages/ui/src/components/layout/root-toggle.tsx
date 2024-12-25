@@ -4,7 +4,6 @@ import { type HTMLAttributes, type ReactNode, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/utils/cn';
-import { isActive } from '@/utils/is-active';
 import { useSidebar } from '@/contexts/sidebar';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 
@@ -42,7 +41,7 @@ export function RootToggle({
     return options.findLast((item) =>
       item.urls
         ? item.urls.includes(pathname)
-        : isActive(item.url, pathname, true),
+        : item.url === pathname || pathname.startsWith(item.url),
     );
   }, [options, pathname]);
 

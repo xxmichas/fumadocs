@@ -36,5 +36,10 @@
   "packageManager": "pnpm@9.14.4",
   "engines": {
     "node": ">= 18.17.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@fumari/json-schema-to-typescript": "patches/@fumari__json-schema-to-typescript.patch"
+    }
   }
 }

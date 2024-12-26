@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@fumari/json-schema-to-typescript':
+    hash: lbwhy6cvtphtiexbrblpxrqm54
+    path: patches/@fumari__json-schema-to-typescript.patch
+
 importers:
 
   .:
@@ -900,7 +905,7 @@ importers:
     dependencies:
       '@fumari/json-schema-to-typescript':
         specifier: ^1.1.2
-        version: 1.1.2
+        version: 1.1.2(patch_hash=lbwhy6cvtphtiexbrblpxrqm54)
       '@radix-ui/react-select':
         specifier: ^2.1.4
         version: 2.1.4(@types/react-dom@19.0.2(@types/react@19.0.2))(@types/react@19.0.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -7150,7 +7155,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@fumari/json-schema-to-typescript@1.1.2':
+  '@fumari/json-schema-to-typescript@1.1.2(patch_hash=lbwhy6cvtphtiexbrblpxrqm54)':
     dependencies:
       '@apidevtools/json-schema-ref-parser': 11.7.3
       js-yaml: 4.1.0

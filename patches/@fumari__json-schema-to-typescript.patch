@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index aba63e1ee7348e0ab97cb80d7c8750c6f3c9abd4..ed04409fcc6088ba7219a9bc5264ca58be72fce8 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -3547,7 +3547,7 @@ function normalizeName(filename) {
+   if (!name) return filename;
+   const dotIdx = name.lastIndexOf(".");
+   if (dotIdx === -1) return name;
+-  return name.slice(0, dotIdx);
++  return name.replaceAll(".", "__");
+ }
+ rules.set('Remove `type=["null"]` if `enum=[null]`', (schema) => {
+   if (Array.isArray(schema.enum) && schema.enum.some((e) => e === null) && Array.isArray(schema.type) && schema.type.includes("null")) {

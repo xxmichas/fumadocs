@@ -1,5 +1,21 @@
 # next-docs-zeta
 
+## 14.6.8
+
+## 14.6.7
+
+### Patch Changes
+
+- 5474343: Export dynamic-link
+
+## 14.6.6
+
+## 14.6.5
+
+### Patch Changes
+
+- 969da26: Improve i18n api
+
 ## 14.6.4
 
 ### Patch Changes
